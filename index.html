@@ -166,18 +166,42 @@
 
     <!-- Header & Navigation -->
     <header id="header" class="sticky-navbar p-4">
-        <nav class="container mx-auto px-6 py-2 flex justify-between items-center bg-gray-800/50 backdrop-blur-md rounded-full shadow-lg">
-            <a href="#" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Rinki Nisha</a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#hero" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
-                <a href="#soft-skills" class="text-gray-300 hover:text-white transition-colors duration-300">Soft Skills</a>
-                <a href="#skills" class="text-gray-300 hover:text-white transition-colors duration-300">Tech-Skills</a>
-                <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300">Projects</a>
-                <a href="#experience" class="text-gray-300 hover:text-white transition-colors duration-300">Experience</a>
-                <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
-            </div>
-        </nav>
-    </header>
+  <nav class="container mx-auto px-6 py-2 flex justify-between items-center bg-gray-800/50 backdrop-blur-md rounded-full shadow-lg">
+    
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Rinki Nisha</a>
+    
+    <!-- Desktop Links -->
+    <div class="hidden md:flex space-x-6 items-center">
+      <a href="#hero" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
+      <a href="#soft-skills" class="text-gray-300 hover:text-white transition-colors duration-300">Soft Skills</a>
+      <a href="#skills" class="text-gray-300 hover:text-white transition-colors duration-300">Tech-Skills</a>
+      <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300">Projects</a>
+      <a href="#experience" class="text-gray-300 hover:text-white transition-colors duration-300">Experience</a>
+      <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
+    </div>
+
+    <!-- Hamburger (Mobile) -->
+    <button id="menu-btn" class="md:hidden flex flex-col space-y-1 focus:outline-none transition-all duration-300">
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800/90 rounded-lg mt-2 mx-6 shadow-lg">
+    <ul class="flex flex-col space-y-4 py-6 text-center">
+      <li><a href="#hero" class="block text-gray-300 hover:text-white transition">About</a></li>
+      <li><a href="#soft-skills" class="block text-gray-300 hover:text-white transition">Soft Skills</a></li>
+      <li><a href="#skills" class="block text-gray-300 hover:text-white transition">Tech-Skills</a></li>
+      <li><a href="#projects" class="block text-gray-300 hover:text-white transition">Projects</a></li>
+      <li><a href="#experience" class="block text-gray-300 hover:text-white transition">Experience</a></li>
+      <li><a href="#contact" class="block text-gray-300 hover:text-white transition">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
 
     <main>
         <!-- Hero Section (Updated to include about me details) -->
@@ -185,12 +209,18 @@
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12 animate-fadeInDown">
                     <!-- Your profile picture with the new animation class and a unique ID -->
-<img src="rinkiphoto.jpeg" id="profile-picture" alt="Profile Picture" class="profile-pic w-64 h-64 rounded-2xl shadow-lg mb-8 md:mb-0 transform hover:scale-110 transition-transform duration-300">                    <div class="max-w-xl text-lg text-gray-300 text-center md:text-left">
+<img src="rinkiphoto.jpeg" 
+     id="profile-picture" 
+     alt="Profile Picture" 
+     class="profile-pic w-80 h-80 rounded-2xl shadow-2xl mb-8 md:mb-0 transform hover:scale-110 hover:rotate-3 transition-transform duration-500">
+<div class="max-w-xl text-lg text-gray-300 text-center md:text-left">
                         <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight">
                             Hi, I'm Rinki Nisha
                         </h1>
-                        <p class="mt-4 text-xl md:text-2xl text-gray-400">A Web Developer and Open Source Enthusiast.</p>
-                        <p class="mt-4 text-gray-300">Passionate web development learner with strong coding skills and a keen interest in building responsive, user-friendly websites using HTML, CSS, and JavaScript. Skilled in Git, GitHub, and prompt engineering with foundational knowledge of version control and Generative AI. Eager to grow, contribute, and solve real-world problems as a fresher in the tech industry.</p>
+<p class="mt-4 text-xl md:text-2xl text-gray-300">
+  A <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 font-bold">Web Developer</span> and 
+  <span id="changing-word" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-purple-500 font-bold"></span>.
+</p>                      <p class="mt-4 text-gray-300">Passionate web development learner with strong coding skills and a keen interest in building responsive, user-friendly websites using HTML, CSS, and JavaScript. Skilled in Git, GitHub, and prompt engineering with foundational knowledge of version control and Generative AI. Eager to grow, contribute, and solve real-world problems as a fresher in the tech industry.</p>
                         
                         <!-- Social Media Links -->
                         <div class="flex justify-center md:justify-start space-x-6 mt-6">
@@ -227,28 +257,64 @@
         </section>
 
         <!-- Soft Skills Section -->
-        <section id="soft-skills" class="py-20 bg-gray-800">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12">Soft Skills</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0s;">
-                        <h3 class="text-2xl font-bold">Team-Work</h3>
-                    </div>
-                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.2s;">
-                        <h3 class="text-2xl font-bold">Leadership</h3>
-                    </div>
-                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.4s;">
-                        <h3 class="text-2xl font-bold">Adaptability</h3>
-                    </div>
-                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.6s;">
-                        <h3 class="text-2xl font-bold">Communication</h3>
-                    </div>
-                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.8s;">
-                        <h3 class="text-2xl font-bold">Problem-Solving </h3>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="soft-skills" class="py-20 bg-gray-900">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+      Soft Skills
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      
+      <!-- Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 to-purple-500 opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-gray-800 rounded-xl p-6 text-center shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-200 group-hover:text-white transition duration-300">
+            Teamwork
+          </h3>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-pink-400 to-red-500 opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-gray-800 rounded-xl p-6 text-center shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-200 group-hover:text-white transition duration-300">
+            Leadership
+          </h3>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-green-400 to-teal-500 opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-gray-800 rounded-xl p-6 text-center shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-200 group-hover:text-white transition duration-300">
+            Adaptability
+          </h3>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-gray-800 rounded-xl p-6 text-center shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-200 group-hover:text-white transition duration-300">
+            Communication
+          </h3>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-400 to-blue-600 opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-gray-800 rounded-xl p-6 text-center shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-200 group-hover:text-white transition duration-300">
+            Problem Solving
+          </h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
         <!-- Technical Skills Section -->
         <section id="skills" class="py-20 bg-gray-900">
@@ -516,19 +582,29 @@
                 <h2 class="text-4xl font-bold text-center mb-12">Education & Certifications</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <!-- Education -->
-                    <div class="bg-gray-900 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
-                        <h3 class="text-2xl font-bold mb-4">Education</h3>
-                        <p class="text-gray-400 mt-2">NavGurukul Foundation Social Welfare</p>
-                        <p class="text-gray-500 text-sm">Web Development Certificate Course | June 2024 - Present</p>
-                        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
-                            <li>Pursuing comprehensive training in
-software engineering with a focus on
-Problem solving skills and web
-development.</li>
-                        </ul>
-                        <p class="text-gray-400 mt-4">Purnia University</p>
-                        <p class="text-gray-500 text-sm">Bachelor of Arts | 2020-2023</p>
-                    </div>
+              <div class="bg-gray-900 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+  <h3 class="text-2xl font-bold mb-4">Education</h3>
+
+  <!-- NavGurukul -->
+  <div class="mb-6">
+    <p class="text-gray-400 font-semibold">NavGurukul Foundation Social Welfare</p>
+    <p class="text-gray-500 text-sm mb-2">Web Development Certificate Course | June 2024 - Present</p>
+    <ul class="list-disc list-inside text-gray-300 space-y-1">
+      <li>Pursuing comprehensive training in software engineering</li>
+      <li>Focus on problem-solving skills and web development</li>
+    </ul>
+  </div>
+
+  <!-- Divider -->
+  <div class="border-t border-gray-700 my-4"></div>
+
+  <!-- Purnia University -->
+  <div>
+    <p class="text-gray-400 font-semibold">Purnia University</p>
+    <p class="text-gray-500 text-sm mb-2">Bachelor of Arts | 2020 - 2023</p>
+  </div>
+</div>
+
                     <!-- Certifications with Button -->
                     <div class="bg-gray-900 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center text-center">
                         <h3 class="text-2xl font-bold mb-4">Certifications</h3>
@@ -547,7 +623,7 @@ development.</li>
                 <h2 class="text-4xl font-bold text-center mb-12">Get in Touch</h2>
                 <div class="max-w-2xl mx-auto">
                     <p class="text-lg text-gray-300 text-center mb-8">Feel free to reach out for collaborations or just to say hi!</p>
-                    <form action="mailto:rinkinisha24@navgurukul.org" method="post" enctype="text/plain" class="space-y-6">
+                    <form action="https://formspree.io/f/xovnzolr" method="post"  class="space-y-6">
                         <div>
                             <label for="name" class="block text-gray-400 mb-2">Name</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100" placeholder="Your Name" required>
@@ -580,14 +656,12 @@ development.</li>
                 
                 <!-- Contact Info -->
                 <div class="flex flex-col md:flex-row justify-center items-center md:space-x-12 space-y-6 md:space-y-0 text-white mb-10">
-                    <a href="mailto:rinkinisha24@navgurukul.org" class="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
                         <i class="fas fa-envelope text-xl"></i>
                         <span>rinkinisha24@navgurukul.org</span>
-                    </a>
-                    <a href="tel:+919999999999" class="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
+                   
                         <i class="fas fa-phone-alt text-xl"></i>
                         <span>+91- 7654164893</span>
-                    </a>
+                    
                     <div class="flex items-center space-x-3">
                         <i class="fas fa-location-dot text-xl"></i>
                         <span>Kishanganj, Bihar, India</span>
@@ -610,7 +684,7 @@ development.</li>
 
                 <!-- Copyright -->
                 <p class="text-sm">
-                    &copy; 2024 Rinki Nisha. All rights reserved.
+                    &copy; 2025 Rinki Nisha | Crafted with ❤️ , Code , Chai & lot of Debugging.
                 </p>
             </div>
         </footer>
@@ -725,6 +799,42 @@ development.</li>
     duration: 1000, // animation speed
     once: false,    // repeat on every scroll
   });
+
+ const words = ["Open Source Enthusiast", "Communicator", "Collaborator", "Innovator"];
+  let index = 0;
+
+  function changeWord() {
+    const wordElement = document.getElementById("changing-word");
+    wordElement.textContent = words[index];
+    index = (index + 1) % words.length;
+  }
+
+  // Initial word
+  changeWord();
+
+  // Change every 2.5 seconds
+  setInterval(changeWord, 2500);
+
+
+
+    const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bars = menuBtn.querySelectorAll('span');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+
+    // Hamburger to X animation
+    bars[0].classList.toggle('rotate-45');
+    bars[0].classList.toggle('translate-y-2');
+
+    bars[1].classList.toggle('opacity-0');
+
+    bars[2].classList.toggle('-rotate-45');
+    bars[2].classList.toggle('-translate-y-2');
+  });
+  
     </script>
 
 </body>
