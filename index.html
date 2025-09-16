@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rinki Nisha - Web Developer Portfolio</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Custom styles for animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInDown {
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Custom animation for the profile picture to slide in */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Initial state of the profile picture before animation */
+        .profile-pic {
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        /* Class to trigger the animation */
+        .profile-pic.is-visible {
+            animation: slideInFromLeft 1s ease-out forwards;
+        }
+        
+        /* Custom scrollbar styling for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; /* bg-gray-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* bg-gray-500 */
+        }
+        
+        /* Custom background for the hero section to match the image */
+        .hero-background {
+            background-color: #12121e;
+            background-image: radial-gradient(circle, #2e2e4b 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Soft Skills card animation */
+        .card-animate {
+            animation: fadeInUp 0.5s ease-out both;
+        }
+
+        /* Custom style for project card hover effect */
+        .project-card-container {
+            perspective: 1000px;
+        }
+        .project-card {
+            transition: transform 0.4s ease-in-out;
+        }
+        .project-card:hover {
+            transform: rotateY(5deg) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .project-card .github-link {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .project-card:hover .github-link {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navbar Sticky effect */
+        .sticky-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: #1f2937;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            width: 500px;
+            position: relative;
+            animation: fadeInUp 0.3s ease-in-out;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: #d1d5db;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-button:hover {
+            color: #ef4444;
+        }
+    </style>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-inter">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="sticky-navbar p-4">
+        <nav class="container mx-auto px-6 py-2 flex justify-between items-center bg-gray-800/50 backdrop-blur-md rounded-full shadow-lg">
+            <a href="#" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Rinki Nisha</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#hero" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
+                <a href="#soft-skills" class="text-gray-300 hover:text-white transition-colors duration-300">Soft Skills</a>
+                <a href="#skills" class="text-gray-300 hover:text-white transition-colors duration-300">Tech-Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300">Projects</a>
+                <a href="#experience" class="text-gray-300 hover:text-white transition-colors duration-300">Experience</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section (Updated to include about me details) -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden hero-background py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12 animate-fadeInDown">
+                    <!-- Your profile picture with the new animation class and a unique ID -->
+<img src="rinkiphoto.jpeg" id="profile-picture" alt="Profile Picture" class="profile-pic w-64 h-64 rounded-2xl shadow-lg mb-8 md:mb-0 transform hover:scale-110 transition-transform duration-300">                    <div class="max-w-xl text-lg text-gray-300 text-center md:text-left">
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight">
+                            Hi, I'm Rinki Nisha
+                        </h1>
+                        <p class="mt-4 text-xl md:text-2xl text-gray-400">A Web Developer and Open Source Enthusiast.</p>
+                        <p class="mt-4 text-gray-300">Passionate web development learner with strong coding skills and a keen interest in building responsive, user-friendly websites using HTML, CSS, and JavaScript. Skilled in Git, GitHub, and prompt engineering with foundational knowledge of version control and Generative AI. Eager to grow, contribute, and solve real-world problems as a fresher in the tech industry.</p>
+                        
+                        <!-- Social Media Links -->
+                        <div class="flex justify-center md:justify-start space-x-6 mt-6">
+                            <a href="https://github.com/Rinki9999" target="_blank" class="text-white hover:text-blue-500 transition-colors duration-300 text-3xl" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/rinki-nisha-8b762b332/" target="_blank" class="text-white hover:text-blue-500 transition-colors duration-300 text-3xl" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.codechef.com/users/rinkinisha" target="_blank" class="text-white hover:text-blue-500 transition-colors duration-300 text-3xl" title="CodeChef">
+                                <i class="fas fa-code"></i>
+                            </a>
+                            
+                           <a href="https://app.netlify.com/teams/rinki9999/projects" target="_blank">
+  <img src="https://cdn.simpleicons.org/netlify/00C7B7" 
+       alt="Netlify" 
+       class="w-10 h-10 hover:scale-110 transition-transform duration-300"/>
+</a>
+                           
+                        </div>
+                        
+                        <!-- Resume and My Work Buttons -->
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="https://drive.google.com/file/d/1xrm2zyu4aOaB8O8CQ4zY4B2PlV_KbX7K/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-green-500 to-blue-500 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                View Resume 
+                            </a>
+                            <a href="#projects" class="inline-block px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-purple-500 to-red-500 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                My Work <i class="fa-solid fa-laptop-code ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Soft Skills Section -->
+        <section id="soft-skills" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Soft Skills</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0s;">
+                        <h3 class="text-2xl font-bold">Team-Work</h3>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold">Leadership</h3>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.4s;">
+                        <h3 class="text-2xl font-bold">Adaptability</h3>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.6s;">
+                        <h3 class="text-2xl font-bold">Communication</h3>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-all duration-300 card-animate" style="animation-delay: 0.8s;">
+                        <h3 class="text-2xl font-bold">Problem-Solving </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 text-white">Tech-Skills & Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <!-- Technical Skills with hover + animation -->
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="flip-left">
+                <i class="fa-brands fa-html5 text-6xl text-orange-500 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">HTML5</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="flip-right">
+                <i class="fa-brands fa-css3-alt text-6xl text-blue-500 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">CSS</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="zoom-in">
+                <i class="fa-brands fa-js-square text-6xl text-yellow-400 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">JavaScript</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="fade-up">
+                <i class="fa-brands fa-git-alt text-6xl text-orange-600 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Git</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="fade-down">
+                <i class="fa-brands fa-react text-6xl text-blue-400 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">React</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="zoom-in-up">
+                <i class="fa-brands fa-node-js text-6xl text-green-500 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Node.js</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="flip-left">
+                <i class="fa-solid fa-server text-6xl text-gray-400 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Express.js</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="flip-right">
+                <i class="fa-solid fa-database text-6xl text-green-600 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">MongoDB</h3>
+            </div>
+
+            <!-- Tools -->
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="fade-up">
+                <i class="fa-brands fa-figma text-6xl text-purple-600 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Figma</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="zoom-in">
+                <img src="https://cdn.simpleicons.org/netlify/00C7B7" alt="Netlify" class="w-16 h-16 mx-auto">
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Netlify</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="fade-down">
+                <i class="fa-brands fa-github text-6xl text-white transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">GitHub</h3>
+            </div>
+
+            <div class="group bg-gray-800 p-6 rounded-lg text-center shadow-lg hover:scale-105 hover:bg-gray-700 cursor-pointer" data-aos="zoom-in-up">
+                <i class="fa-brands fa-google text-6xl text-red-500 transition-transform duration-300 group-hover:scale-110"></i>
+                <h3 class="mt-4 text-lg font-semibold text-gray-200 group-hover:text-white">Google Workspace</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-card-container">
+                    <!-- To Do List -->
+                    <div class="group relative bg-gray-900 rounded-lg overflow-hidden shadow-lg project-card">
+                        <!-- GitHub link -->
+                        <a href="https://github.com/Rinki9999/To-do-list" target="_blank" class="github-link absolute top-4 right-4 text-sm bg-gray-700/80 backdrop-blur-sm text-white px-3 py-1 rounded-full z-10">
+                           <i class="fab fa-github"></i>
+                        </a>
+                        <img src="Screenshot from 2025-09-15 23-54-16.png" alt="To Do List Project" class="w-full h-48 object-contain">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">To Do List</h3>
+                            <p class="text-gray-400 text-sm mb-4">Built a dynamic To-Do List web app using HTML, CSS, and JavaScript with task creation, editing, due dates, and drag-and-drop transitions.</p>
+                            <!-- Tech Logos -->
+                            <div class="flex space-x-3 mb-4">
+                                <i class="fa-brands fa-html5 text-2xl text-orange-500" title="HTML5"></i>
+                                <i class="fa-brands fa-css3-alt text-2xl text-blue-500" title="CSS3"></i>
+                                <i class="fa-brands fa-js-square text-2xl text-yellow-400" title="JavaScript"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <a href="https://rinki9999.github.io/To-do-list/" class="inline-flex items-center text-green-400 hover:text-green-500">
+                                    Live <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Women-Safety-Web -->
+                    <div class="group relative bg-gray-900 rounded-lg overflow-hidden shadow-lg project-card">
+                        <!-- GitHub link -->
+                        <a href="https://github.com/Rinki9999/Women-Safety" target="_blank" class="github-link absolute top-4 right-4 text-sm bg-gray-700/80 backdrop-blur-sm text-white px-3 py-1 rounded-full z-10">
+                           <i class="fab fa-github"></i>
+                        </a>
+                        <img src="Screenshot from 2025-09-15 23-58-28.png" alt="Women Safety Web App" class="w-full h-48 object-contain">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Women-Safety-Web</h3>
+                            <p class="text-gray-400 text-sm mb-4">Developed a Women Safety application using HTML, CSS, and JavaScript that empowers users to act quickly in emergencies. The app lets users save an emergency contact number, and in critical situations, simply shaking the phone triggers an alarm, starts automatic video recording (saved locally), and instantly sends an SMS with the user’s live location to the saved contact.</p>
+                            <!-- Tech Logos -->
+                            <div class="flex space-x-3 mb-4">
+                                <i class="fa-brands fa-html5 text-2xl text-orange-500" title="HTML5"></i>
+                                <i class="fa-brands fa-css3-alt text-2xl text-blue-500" title="CSS3"></i>
+                                <i class="fa-brands fa-js-square text-2xl text-yellow-400" title="JavaScript"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <a href="https://cheerful-parfait-db4d6e.netlify.app/" class="inline-flex items-center text-green-400 hover:text-green-500">
+                                    Live <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Explore Bihar – Tourism Website -->
+                    <div class="group relative bg-gray-900 rounded-lg overflow-hidden shadow-lg project-card">
+                        <!-- GitHub link -->
+                        <a href="https://github.com/Rinki9999/ExploreBihar" target="_blank" class="github-link absolute top-4 right-4 text-sm bg-gray-700/80 backdrop-blur-sm text-white px-3 py-1 rounded-full z-10">
+                           <i class="fab fa-github"></i>
+                        </a>
+                        <img src="Screenshot from 2025-09-16 00-00-31.png" alt="Explore Bihar Project" class="w-full h-48 object-contain">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Explore Bihar</h3>
+                            <p class="text-gray-400 text-sm mb-4">Built an interactive tourism website showcasing Bihar’s top destinations using HTML, CSS, and JavaScript with smooth animations and responsive layouts.</p>
+                            <!-- Tech Logos -->
+                            <div class="flex space-x-3 mb-4">
+                                <i class="fa-brands fa-html5 text-2xl text-orange-500" title="HTML5"></i>
+                                <i class="fa-brands fa-css3-alt text-2xl text-blue-500" title="CSS3"></i>
+                                <i class="fa-brands fa-js-square text-2xl text-yellow-400" title="JavaScript"></i>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <a href="https://explore-bihar.netlify.app/" class="inline-flex items-center text-green-400 hover:text-green-500">
+                                    Live <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Projects Container -->
+                <div id="more-projects-container" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-card-container mt-8">
+                     <!-- New Project 1 - E-commerce Website -->
+                    <div class="group relative bg-gray-900 rounded-lg overflow-hidden shadow-lg project-card">
+                        <a href="https://github.com/Rinki9999/MemoryMatchGame" target="_blank" class="github-link absolute top-4 right-4 text-sm bg-gray-700/80 backdrop-blur-sm text-white px-3 py-1 rounded-full z-10">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <img src="Screenshot from 2025-09-16 10-23-38.png" alt="E-commerce Website" class="w-full h-48 object-contain">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Memory Match Game</h3>
+                            <p class="text-gray-400 text-sm mb-4">Built an interactive card-flip memory game using HTML, CSS, and JavaScript, featuring emoji matching, a timer, real-time score tracking, and a leaderboard with player rankings.
+
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <a href="https://rad-brigadeiros-f691e1.netlify.app/" class="inline-flex items-center text-green-400 hover:text-green-500">
+                                    Live <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                  
+                <!-- More Projects Button -->
+                <div class="text-center mt-12">
+                    <a id="toggle-projects-button" class="inline-block px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-teal-400 to-cyan-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        View All Projects <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Experience & Volunteering</h2>
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Vertical line in the center for desktop -->
+                    <div class="absolute left-1/2 -translate-x-1/2 w-1 bg-gray-700 h-full hidden md:block"></div>
+
+                    <!-- NavGurukul - Campus Jury Member (Left side on desktop) -->
+                    <div class="md:flex md:flex-row md:items-center justify-between mb-8 md:mb-16">
+                        <div class="md:w-1/2 md:pr-10 relative md:text-right">
+                            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                                <h3 class="text-2xl font-bold">Campus Jury Member</h3>
+                                <p class="text-gray-400 mt-1">NavGurukul Foundation Social Welfare | Aug 2024 - Jan 2025</p>
+                                <p class="text-gray-300 mt-4">Conducted student interviews for council post, applied critical thinking, and maintained transparency in the selection process.</p>
+                            </div>
+                            <div class="hidden md:block absolute right-[-2.3rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 border-4 border-gray-900 z-10"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                    
+                    <!-- NavGurukul - Project Lead (Right side on desktop) -->
+                    <div class="md:flex md:flex-row-reverse md:items-center justify-between mb-8 md:mb-16">
+                        <div class="md:w-1/2 md:pl-10 relative md:text-left">
+                            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                                <h3 class="text-2xl font-bold">Project Lead</h3>
+                                <p class="text-gray-400 mt-1">NavGurukul Foundation Social Welfare</p>
+                                <p class="text-gray-300 mt-4">Led a team of 8 members, coordinated task distribution, and fostered an ownership-driven environment.</p>
+                            </div>
+                            <div class="hidden md:block absolute left-[-2.3rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 border-4 border-gray-900 z-10"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- NavGurukul - External Jury Panelist (Left side on desktop) -->
+                    <div class="md:flex md:flex-row md:items-center justify-between mb-8 md:mb-16">
+                        <div class="md:w-1/2 md:pr-10 relative md:text-right">
+                            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                                <h3 class="text-2xl font-bold">External Jury Panelist</h3>
+                                <p class="text-gray-400 mt-1">NavGurukul Foundation Social Welfare | April 2025</p>
+                                <p class="text-gray-300 mt-4">Evaluated participants on articulation, critical reasoning, and content depth for debate competitions across 6 campuses.</p>
+                            </div>
+                            <div class="hidden md:block absolute right-[-2.3rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 border-4 border-gray-900 z-10"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                    
+                    <!-- House Leader Experience (Right side on desktop) -->
+                    <div class="md:flex md:flex-row-reverse md:items-center justify-between mb-8 md:mb-16">
+                        <div class="md:w-1/2 md:pl-10 relative md:text-left">
+                            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                                <h3 class="text-2xl font-bold">House Leader</h3>
+                                <p class="text-gray-400 mt-1">5 Months</p>
+                                <ul class="list-disc list-inside text-gray-300 mt-4 space-y-2">
+                                    <li>Made a safe environment for 25 house members.</li>
+                                    <li>Handled the entire campus for 15 days with two other house leaders in the absence of a mentor.</li>
+                                </ul>
+                            </div>
+                            <!-- Circle on the line -->
+                            <div class="hidden md:block absolute left-[-2.3rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 border-4 border-gray-900 z-10"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Volunteering (Left side on desktop) -->
+                    <div class="md:flex md:flex-row md:items-center justify-between">
+                        <div class="md:w-1/2 md:pr-10 relative md:text-right">
+                            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                                <h3 class="text-2xl font-bold">Project Potential (Yuva Mela)</h3>
+                                <p class="text-gray-400 mt-1">Thakurganj - Bihar | December 2024</p>
+                                <p class="text-gray-300 mt-4">Volunteered at Yuva Mela, an event featuring 25+ organizations. Represented the School of Programming campus, strengthened teamwork skills, and gained valuable insights into networking.</p>
+                            </div>
+                            <!-- Circle on the line -->
+                            <div class="hidden md:block absolute right-[-2.3rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500 border-4 border-gray-900 z-10"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications Section (Updated) -->
+        <section id="education" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Education & Certifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Education -->
+                    <div class="bg-gray-900 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <h3 class="text-2xl font-bold mb-4">Education</h3>
+                        <p class="text-gray-400 mt-2">NavGurukul Foundation Social Welfare</p>
+                        <p class="text-gray-500 text-sm">Web Development Certificate Course | June 2024 - Present</p>
+                        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                            <li>Pursuing comprehensive training in
+software engineering with a focus on
+Problem solving skills and web
+development.</li>
+                        </ul>
+                        <p class="text-gray-400 mt-4">Purnia University</p>
+                        <p class="text-gray-500 text-sm">Bachelor of Arts | 2020-2023</p>
+                    </div>
+                    <!-- Certifications with Button -->
+                    <div class="bg-gray-900 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center text-center">
+                        <h3 class="text-2xl font-bold mb-4">Certifications</h3>
+                        <p class="text-gray-400 mb-6">Click the button to view my certificates.</p>
+                        <button onclick="showCertificates()" class="px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-teal-400 to-cyan-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            View Certificates
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Get in Touch</h2>
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-lg text-gray-300 text-center mb-8">Feel free to reach out for collaborations or just to say hi!</p>
+                    <form action="mailto:rinkinisha24@navgurukul.org" method="post" enctype="text/plain" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-400 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-400 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100" placeholder="your.email@example.com" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-400 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- New and Improved Footer -->
+        <footer class="bg-gray-800 py-16 text-gray-400">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-3xl mx-auto mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to bring your project to life?</h2>
+                    <p class="text-lg">
+                        Whether you have a question or a project in mind, I'd love to hear from you and discuss how we can work together.
+                    </p>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="flex flex-col md:flex-row justify-center items-center md:space-x-12 space-y-6 md:space-y-0 text-white mb-10">
+                    <a href="mailto:rinkinisha24@navgurukul.org" class="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                        <span>rinkinisha24@navgurukul.org</span>
+                    </a>
+                    <a href="tel:+919999999999" class="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
+                        <i class="fas fa-phone-alt text-xl"></i>
+                        <span>+91- 7654164893</span>
+                    </a>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-location-dot text-xl"></i>
+                        <span>Kishanganj, Bihar, India</span>
+                    </div>
+                </div>
+
+                <!-- Social Media Icons (re-using existing links) -->
+                <div class="flex justify-center space-x-6 text-white text-2xl mb-10">
+                    <a href="https://github.com/Rinki9999" target="_blank" class="hover:text-blue-500 transition-colors duration-300" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rinki-nisha-8b762b332/" target="_blank" class="hover:text-blue-500 transition-colors duration-300" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.codechef.com/users/rinkinisha" target="_blank" class="hover:text-blue-500 transition-colors duration-300" title="CodeChef">
+                        <i class="fas fa-code"></i>
+                    </a>
+                 
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-sm">
+                    &copy; 2024 Rinki Nisha. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+        <!-- Modal for Certificates -->
+        <div id="certificate-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-button" onclick="hideCertificates()">&times;</span>
+                <h3 class="text-2xl font-bold text-white mb-4">Certificates</h3>
+                <ul id="certificate-list" class="space-y-4">
+                    <!-- Certificates will be added here dynamically by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+
+
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <script>
+        // JavaScript for interactive features
+
+        // Hide/show header on scroll - हटा दिया गया है ताकि navbar हमेशा sticky रहे
+        const profilePic = document.getElementById('profile-picture');
+        const heroSection = document.getElementById('hero');
+
+        // Observer create करें
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // जब Hero सेक्शन viewport में आता है, तो animation class जोड़ दें
+                if (entry.isIntersecting) {
+                    profilePic.classList.add('is-visible');
+                    // Animation trigger होने के बाद observer को disconnect कर दें
+                    observer.disconnect();
+                }
+            });
+        }, {
+            // RootMargin का उपयोग कर आप viewport के margin को adjust कर सकते हैं
+            rootMargin: '0px',
+            threshold: 0.5 // जब 50% सेक्शन visible हो जाए तो trigger करें
+        });
+
+        // Hero सेक्शन को observe करना शुरू करें
+        observer.observe(heroSection);
+
+        // प्रोजेक्ट दिखाने और छिपाने के लिए JavaScript
+        const toggleButton = document.getElementById('toggle-projects-button');
+        const moreProjectsContainer = document.getElementById('more-projects-container');
+
+        // बटन पर क्लिक इवेंट जोड़ें
+        toggleButton.addEventListener('click', () => {
+            if (moreProjectsContainer.classList.contains('hidden')) {
+                // छिपे हुए प्रोजेक्ट्स को दिखाएँ
+                moreProjectsContainer.classList.remove('hidden');
+                // बटन का टेक्स्ट बदलें
+                toggleButton.innerHTML = 'View Less Projects <i class="fa-solid fa-arrow-left ml-2"></i>';
+            } else {
+                // प्रोजेक्ट्स को छिपाएँ
+                moreProjectsContainer.classList.add('hidden');
+                // बटन का टेक्स्ट वापस बदलें
+                toggleButton.innerHTML = 'View All Projects <i class="fa-solid fa-arrow-right ml-2"></i>';
+            }
+        });
+
+        // Certificates Data (Title aur Links ke saath)
+        const certificates = [
+            { title: "Prompt Engineering", link: "https://drive.google.com/file/d/1nrKBCeOtgVxs-3jjzyxuaRku3Xb98VY_/view" },
+            { title: "Generative AI", link: "https://drive.google.com/file/d/1N9FTbwosPD-XeMaI1HlRZgaD_XUvaHbk/view" },
+            { title: "Version Control", link: "https://www.coursera.org/account/accomplishments/verify/3SZKBPTWBK5S" }
+        ];
+
+        // Modal dikhane ka function
+        function showCertificates() {
+            const modal = document.getElementById('certificate-modal');
+            const certificateList = document.getElementById('certificate-list');
+            
+            // Purane items ko hatayein
+            certificateList.innerHTML = '';
+            
+            // Naye items add karein
+            certificates.forEach(cert => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <a href="${cert.link}" target="_blank" class="block bg-gray-800 hover:bg-gray-700 transition-colors duration-300 p-4 rounded-lg">
+                        <p class="font-semibold text-lg text-white">${cert.title}</p>
+                        <span class="text-sm text-blue-400 hover:underline">View Certificate</span>
+                    </a>
+                `;
+                certificateList.appendChild(li);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        // Modal chhupane ka function
+        function hideCertificates() {
+            const modal = document.getElementById('certificate-modal');
+            modal.style.display = 'none';
+        }
+
+        // Modal ke bahar click karne par usse chhupana
+        window.onclick = function(event) {
+            const modal = document.getElementById('certificate-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+  AOS.init({
+    duration: 1000, // animation speed
+    once: false,    // repeat on every scroll
+  });
+    </script>
+
+</body>
+</html>
